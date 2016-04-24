@@ -44,6 +44,7 @@
                 videoPlaying = false;
             }
         }, false);
+        document.getElementById('nav-links').addEventListener('click', toggleNav);
     } else {
         alert("KO");
     }
@@ -67,4 +68,13 @@
         });
     });
 
+    function toggleNav (){
+        if ($('#camera').css('display') == 'none') {
+            $('#camera').show();
+            $('#fileUpload').hide();
+        } else {
+            $('#camera').hide();
+            $('#fileUpload').show();
+        }
+    }
 })();
