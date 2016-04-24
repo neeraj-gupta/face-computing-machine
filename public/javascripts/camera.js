@@ -47,5 +47,24 @@
     } else {
         alert("KO");
     }
-})();
 
+    $('#upload').click(function() {
+        var canvas = document.getElementById('canvas');
+        var image = canvas.toDataURL("image/png");
+
+        var imageBase64 = image.replace(/^data:image\/(png|jpg);base64,/, "");
+
+        $.ajax({
+            url: 'http://localhost:3000/upload',
+            dataType: "json",
+            data: {
+                image: imageBase64
+            },
+            type: "POST",
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    });
+
+})();
