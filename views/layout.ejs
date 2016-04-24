@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Face Computing Machine</title>
+        <meta content='' name='description' />
+        <meta content='' name='author' />
+        <meta content='width=device-width, initial-scale=1.0' name='viewport' />
+        <link rel="stylesheet" href="/scripts/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/main.css">
+    </head>
+    <body>
+        <div class="container-fluid full">
+            <div>
+                <nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Face Computing Machine</a>
+                    </div>
+                    <ul class="nav navbar-nav nav-right">
+                        <li class="active"><a href="/">Take Picture<span class="sr-only">(current)</span></a></li>
+                        <li><a href="/">Upload Image</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <section>
+                <div class="camera">
+                    <div class="row col-lg-offset-3">
+                        <video id="v"></video>
+                    </div>
+                    <div class="row">
+                        <div class="center-block">
+                        <button id="take" class="btn btn-primary btn-lg center-block">Take a photo</button>
+                        <button id="upload" class="btn btn-primary btn-lg">Upload</button>
+                        </div>
+                    </div>
+                    <canvas id="canvas" style="display:none; box-shadow: 0 0 10px #223344;"></canvas>
+                    <img src="" id="photo">
+                </div>
+                <div class="fileUploand">
+                    <div class="row col-lg-offset-3">
+                        <input type="file" accept="image/*" class="input-group-lg">
+                        <span class="btn btn-default btn-file">
+                            Browse <input type="file">
+                        </span>
+                    </div>
+                    <canvas id="canvas" style="display:none; box-shadow: 0 0 10px #223344;"></canvas>
+                    <img src="" id="photo">
+                </div>
+            </section>
+        </div>
+        <script type="text/javascript" src="/javascripts/camera.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/scripts/js/bootstrap.min.js"></script>
+    </body>
+</html>
