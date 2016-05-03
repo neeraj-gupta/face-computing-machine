@@ -2,6 +2,8 @@
  * Created by Neeraj on 4/21/2016.
  */
 (function(){
+    var webCamStream;
+    var videoPlaying = false;
     function userMedia(){
         return navigator.getUserMedia = navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
@@ -11,8 +13,6 @@
 
     // Now we can use it
     if( userMedia() ){
-        var webCamStream;
-        var videoPlaying = false;
         var constraints = {
             video: true,
             audio:false
@@ -40,8 +40,6 @@
                 canvas.getContext('2d').drawImage(video, 0, 0);
                 var data = canvas.toDataURL('image/webp');
                 document.getElementById('photo').setAttribute('src', data);
-                webCamStream.stop();
-                videoPlaying = false;
             }
         }, false);
         document.getElementById('nav-links').addEventListener('click', toggleNav);
@@ -63,7 +61,7 @@
             },
             type: "POST",
             success: function(data) {
-                console.log(data);
+                console.log("D: " + data);
             }
         });
     });
