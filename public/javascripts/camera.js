@@ -54,7 +54,7 @@
         var imageBase64 = image.replace(/^data:image\/(png|jpg);base64,/, "");
 
         $.ajax({
-            url: 'http://localhost:3000/upload',
+            url: 'http://52.10.196.93:3000/upload',
             dataType: "json",
             data: {
                 image: imageBase64

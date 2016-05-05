@@ -3,6 +3,8 @@ var http = require('http');
 var router = express.Router();
 var fs = require('fs');
 var uuid = require('uuid');
+var Client = require('node-rest-client').Client;
+var client = new Client();
 var host_ip = "52.10.196.93";
 var api_key = "AIzaSyAqEPptR9Y5xz8tcC8ClaXhisLaLJKbmRE";
 
@@ -12,47 +14,32 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/upload', function (req, res){
-  var imageName = uuid.v1() + ".png";
+  var imageName = uuid.v1() + ".jpeg";
   var imageBase64 = req.body.image;
 
   fs.writeFile(__dirname + "/" + imageName, imageBase64, 'base64', function(err) {
     console.log(err);
-    console.log("Image path: " + __dirname + "/" + imageName);
-    var responseStr = "";
-    var options = {
-      hostname: host_ip,
-      port: 5000,
-      path: '/',
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-
-    //var postData = {key: api_key, imagePath: __dirname + "/" + imageName};
-    var postData = {key: api_key, imagePath: __dirname + "/" + imageName};
-    var postStr = JSON.stringify(postData);
-    var req = http.request(options, function(res) {
-      res.setEncoding('utf-8');
-      res.on('data', function(data){
-        responseStr += data;
-      });
-
-      res.on('end', function(){
-        var resultObject = JSON.parse(responseStr);
-        console.log(resultObject);
-      });
-    });
-
-    req.on('error', function(e){
-      console.log(e);
-    })
-
-    req.write(postStr);
-    req.end();
+    var imagePath = __dirname + "/" + imageName;
+    console.log("Image path: " + imagePath);
+    callToPython(imagePath);
   });
 
-  res.json("Success");
+  function callToPython(imagePath){
+    var responseStr = "";
+    var args = {
+      data: { key: api_key, imagePath:imagePath },
+      headers: { "Content-Type": "application/json" }
+    };
+    
+    client.post("http://52.10.196.93:5000/getData", args, function(data, response){
+	var jsonString = JSON.stringify(data);
+	console.log(jsonString);
+	var jsonObject = data;
+	//console.log(jsonObject);
+    });
+   }
+
+   res.json("Success");
 });
 
-module.exports = router;
+module.exports = router;	
