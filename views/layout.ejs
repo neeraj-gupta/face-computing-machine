@@ -10,46 +10,146 @@
         <link rel="stylesheet" href="stylesheets/main.css">
     </head>
     <body>
-        <div class="container-fluid full">
-            <div>
-                <nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Face Computing Machine</a>
-                    </div>
-                    <ul id="nav-links" class="nav navbar-nav nav-right">
-                        <li class="active"><a >Take Picture<span class="sr-only">(current)</span></a></li>
-                        <li><a >Upload Image</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <section>
-                <div id="camera" class="camera">
-                    <div class="row col-lg-offset-3">
-                        <video id="v"></video>
-                    </div>
-                    <div class="row">
-                        <div class="center-block">
-                            <button id="take" class="btn btn-primary btn-lg center-block">Take a photo</button>
+        <div class="site-body">
+            <div class="container" style="max-width: 800px; text-align: center">
+                <div id="header" >
+                    <div id="headerimage"></div>
+                    <div id="headertext">
+                        <div >
+                            <div>
+                                <h1 id="picmeh1id">
+                                    Face Computing Machine
+                                </h1>
+                            </div>
+                            <div class="subheader">How do I Look?</div>
                         </div>
                     </div>
-                    <canvas id="canvas" style="display:none; box-shadow: 0 0 10px #223344;"></canvas>
-                    <img src="" id="photo">
-                    <button id="upload" class="btn btn-primary btn-lg center-block">Upload</button>
                 </div>
-                <div id="fileUpload" class="fileUpload">
-                    <div class="row col-lg-offset-3">
-                        <input type="file" accept="image/*" class="input-group-lg">
-                        <span class="btn btn-default btn-file">
-                            Browse <input type="file">
-                        </span>
+
+                <div id="selectImage">
+                    <div id="imageDiv" class="ImageSelector" style="opacity: 1; ">
+                        <div id="imageList" class="ScrollArea notSelectedImage">
+                            <img src="../images/scroll000.jpg" data-url="../images/main000.jpg" data-image-name="faces2/main000.jpg" id="faces2/main000.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll001.jpg" data-url="../images/main001.jpg" data-image-name="faces2/main001.jpg" id="faces2/main001.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll002.jpg" data-url="../images/main002.jpg" data-image-name="faces2/main002.jpg" id="faces2/main002.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll003.jpg" data-url="../images/main003.jpg" data-image-name="faces2/main003.jpg" id="faces2/main003.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll004.jpg" data-url="../images/main004.jpg" data-image-name="faces2/main004.jpg" id="faces2/main004.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll005.jpg" data-url="../images/main005.jpg" data-image-name="faces2/main005.jpg" id="faces2/main005.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll007.jpg" data-url="../images/main007.jpg" data-image-name="faces2/main007.jpg" id="faces2/main007.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll008.jpg" data-url="../images/main008.jpg" data-image-name="faces2/main008.jpg" id="faces2/main008.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll009.jpg" data-url="../images/main009.jpg" data-image-name="faces2/main009.jpg" id="faces2/main009.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0010.jpg" data-url="../images/main0010.jpg" data-image-name="faces2/main0010.jpg" id="faces2/main0010.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0011.jpg" data-url="../images/main0011.jpg" data-image-name="faces2/main0011.jpg" id="faces2/main0011.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0012.jpg" data-url="../images/main0012.jpg" data-image-name="faces2/main0012.jpg" id="faces2/main0012.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0013.jpg" data-url="../images/main0013.jpg" data-image-name="faces2/main0013.jpg" id="faces2/main0013.jpg" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0014.jpg" data-url="../images/main0014.jpg" data-image-name="faces2/main0014.jpg" id="faces2/main0014.jpg" data-orig-url ="" data-orig-domain="" />
+                        </div>
+
+                        <div id="SelectorBox">
+                            <a id="attributionId" class="imgAttribution" href="#" target="_blank"></a>
+                        </div>
+                        <div id="SelectorTag">
+                            <button type="button" class="btn btn-default" onclick="analyzeUrl() ">
+                                <span class="glyphicon glyphicon-circle-arrow-right" style="margin-right: 4px" aria-hidden="true"></span>Use this photo
+                            </button>
+                        </div>
                     </div>
-                    <canvas id="canvas" style="display:none; box-shadow: 0 0 10px #223344;"></canvas>
-                    <img src="" id="photo">
+
+                    <label id="uploadLabel" class="center-block">
+                        <button id="uploadFileId" class="btn btn-default action" onclick=" useImage()">
+                            <span class="glyphicon glyphicon-folder-open"  style="margin-right: 4px"></span>
+                            Use your own photo
+                        </button>
+                        <input id="uploadBtn" type="file" accept="image/*" style="visibility: hidden; width: 0px; height: 0px">
+                    </label>
+
+                    <label id="cameraLabel" class="center-block">
+                        <button id="camera-modal" class="btn btn-default action" onclick="fcm.openModal()">
+                            <span class="glyphicon glyphicon-camera"  style="margin-right: 4px"></span>
+                            Use camera
+                        </button>
+                    </label>
                 </div>
-            </section>
+
+                <!-- Modal for Camera -->
+                <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">×</span>
+                            <h2>Capture Image</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <video id="v"></video>
+                            </div>
+                            <div class="row">
+                                <div class="center-block">
+                                    <button id="take" class="btn btn-primary btn-lg center-block">Take a photo</button>
+                                </div>
+                            </div>
+                            <canvas id="canvas" style="display:none; box-shadow: 0 0 10px #223344;"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Result Container -->
+                <div id="results" hidden>
+                    <div id="analyzingLabel" class="bodyfont"></div>
+                    <div id="imageSpacer" style="width:0px; height:0px;"></div>
+                    <div id="thumbContainer" style="padding-left: 0px; position: relative;">
+                        <img id="thumbnail" src="/Images/placeholder.png" class="img-responsive center-block" onerror=" this.onerror = null;this.src = '/Images/placeholder.png'; "/>
+                        <a id="attributionMainId" class="imgAttribution" href="#" target="_blank"></a>
+                        <div id="faces">
+                            <div></div>
+                        </div>
+                    </div>
+                    <p id="improvingLabel" class="help-block center-block bodyfont" style="font-weight: 100; font-size: 13px; text-align: center; visibility: hidden; margin-bottom: 20px; ">Sorry if we didn’t quite get it right -
+                        <a class="bodyfont link-underline" href="/goto?url=aka.ms/faceapi" target="_blank" style="font-weight: 100; font-size: 13px; text-decoration: underline">we are still improving this feature.</a>.</p>
+
+                    <div id="gameLauncher" hidden>
+                        <button id="gameBtn" class="btn btn-default center-block action">
+                            Get a human opinion
+                        </button>
+                        <div id="gameConjunction" class="bodyfont">or</div>
+                    </div>
+
+                    <button id="tryAnotherBtn" class="btn btn-default center-block action" onclick=" history.go(-1); ">
+                        Try Another Photo!
+                    </button>
+                    <div id="jsonEventDiv" style="margin-top: 30px;" hidden>
+                        <pre id="jsonEvent" style="text-align: left"></pre>
+                    </div>
+                </div>
+
+                <div id="footerId">
+                    <a class="bodyfont link" style="font-size: 12px;" href="/goto?url=aka.ms/howoldprivacy" target="_blank"><span>Privacy &amp; Cookies</span></a>
+                    <label class="bodyfont" style="font-size: 12px" href="#"> | </label>
+                    <a class="bodyfont link" style="font-size: 12px;" href="/goto?url=aka.ms/howoldtou" target="_blank"><span>Terms of Use</span></a>
+                </div>
+
+                <input data-val="true" data-val-required="The IsTest field is required." id="isTest" name="isTest" type="hidden" value="False" />
+                <input id="source" name="source" type="hidden" value="" />
+                <input id="siteVersion" name="siteVersion" type="hidden" value="001" />
+
+
+                <input id="analyzingText" name="analyzingText" type="hidden" value="Analyzing..." />
+                <input id="couldntDetectText" name="couldntDetectText" type="hidden" value="Couldn’t detect any faces." />
+                <input id="VerifyImageText" name="VerifyImageText" type="hidden" value="Please verify that the image is valid and less than 10MB." />
+
+            </div>
         </div>
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
-        <script type="text/javascript" src="/javascripts/camera.js"></script>
+        <script type="text/javascript" src="/javascripts/fcm.js"></script>
         <script type="text/javascript" src="/scripts/js/bootstrap.min.js"></script>
     </body>
 </html>
+
+
+
+
+
+
+

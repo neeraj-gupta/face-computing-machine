@@ -2,18 +2,20 @@
  * Created by Neeraj on 4/21/2016.
  */
 
-var fcm = function(){
-    var webCamStream;
-    var videoPlaying = false;
+function Fcm() {
+
 };
 
-fcm.prototype.initializeCamera = function() {
+Fcm.prototype.initializeCamera = function() {
+    var webCamStream;
+    var videoPlaying = false;
     // Now we can use it
-    if( userMedia() ){
+    if( this.isUserMedia() ){
         var constraints = {
             video: true,
             audio:false
         };
+        var self = this;
         var video = document.getElementById('v');
         var media = navigator.getUserMedia(constraints, function(stream){
             // URL Object is different in WebKit
@@ -22,8 +24,8 @@ fcm.prototype.initializeCamera = function() {
             video.src = url ? url.createObjectURL(stream) : stream;
             // Start the video
             video.play();
-            this.videoPlaying  = true;
-            this.webCamStream = stream;
+            videoPlaying  = true;
+            webCamStream = stream;
         }, function(error){
             console.log("ERROR");
             console.log(error);
@@ -36,39 +38,48 @@ fcm.prototype.initializeCamera = function() {
                 canvas.height = video.videoHeight;
                 canvas.getContext('2d').drawImage(video, 0, 0);
                 var data = canvas.toDataURL('image/webp');
-                document.getElementById('photo').setAttribute('src', data);
+                //document.getElementById('photo').setAttribute('src', data);
+                webCamStream.stop();
+                self.upload(data);
             }
-        }, false);
+        },false);
+        document.getElementsByClassName("close")[0].addEventListener('click', function(){
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+            webCamStream.stop();
+            videoPlaying = false;
+        });
     } else {
         alert("KO");
     }
 };
 
-fcm.prototype.getUserMedia = function(){
+Fcm.prototype.isUserMedia = function(){
     return navigator.getUserMedia = navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
         navigator.msGetUserMedia || null;
 };
 
-fcm.prototype.openModal = function(){
+Fcm.prototype.closeCamera = function(){ alert('hi')
+    this.webCamStream.stop();
+    this.videoPlaying = false;
+}
+
+Fcm.prototype.openModal = function(){
     var modal = document.getElementById('myModal');
-    var span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+    this.initializeCamera();
 };
 
-fcm.prototype.upload = function(){
-    var canvas = document.getElementById('canvas');
-    var image = canvas.toDataURL("image/png");
-
-    var imageBase64 = image.replace(/^data:image\/(png|jpg);base64,/, "");
+Fcm.prototype.upload = function(data){
+    //var canvas = document.getElementById('canvas');
+    //var image = canvas.toDataURL("image/png");
+    alert('data: ' + data);
+    var imageBase64 = data.replace(/^data:image\/(png|jpg);base64,/, "");
 
     $.ajax({
-        url: 'localhost:3000/upload',
+        url: 'http://localhost:3000/upload',
         //url: 'http://52.10.196.93:3000/upload',
         dataType: "json",
         data: {
@@ -79,4 +90,6 @@ fcm.prototype.upload = function(){
             console.log("D: " + data);
         }
     });
-}
+};
+
+var fcm = new Fcm();

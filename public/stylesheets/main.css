@@ -1,40 +1,267 @@
 body {
-  left: 0;
-  top: 0;
-  border: 0;
-  margin: 0; }
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #ff8c00; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0; }
 
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700; }
+
 a {
   text-decoration: none; }
 
-.full {
-  padding: 0; }
+li:hover {
+  cursor: pointer; }
 
-.nav-right {
-  float: right !important;
-  padding-right: 15px; }
+.site-body {
+  max-width: 100%;
+  overflow-x: hidden;
+  transform-origin: 50% 0%;
+  -webkit-transform-origin: 50% 0%;
+  padding-top: 15px;
+  padding-bottom: 24px;
+  box-sizing: border-box; }
 
-.fileUpload {
-  display: none; }
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
 
-.btn-file {
+#header {
+  display: flex;
+  padding-bottom: 30px; }
+
+#headerimage {
+  height: 87px;
+  width: 80px;
+  float: left;
+  background: url(../images/logo.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 0; }
+
+#headertext {
+  margin-left: 15px;
+  text-align: left; }
+
+#picmeh1id {
+  padding-bottom: 0;
+  font-weight: 100;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-family: Segoe UI Light,CustomSegoeUILight,Arial;
+  font-size: 58px;
+  color: #f8f7bb;
+  margin-left: 0;
+  color: #fff; }
+
+.subheader {
+  font-family: Segoe UI Semibold,CustomSegoeSemibold,Arial;
+  font-size: 18px;
+  color: #f8f7bb;
+  color: #fff; }
+
+#imageDiv {
+  margin-top: 50px;
+  -ms-touch-action: none; }
+
+.ImageSelector {
   position: relative;
-  overflow: hidden; }
+  margin-left: auto;
+  margin-Right: auto;
+  width: 250px;
+  height: 250px;
+  overflow: visible; }
 
-.btn-file input[type=file] {
+.ImageSelector {
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-Right: auto;
+  width: 250px;
+  height: 250px;
+  overflow: visible;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none; }
+
+.ImageSelector .ScrollArea {
+  height: 250px;
+  width: 2000000px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  background-color: #b18648;
+  border: solid #ff8c00;
+  border-width: 50px 500px 50px 500px;
+  box-sizing: content-box;
+  margin-left: -500px;
+  margin-top: -50px; }
+
+.ImageSelector .ScrollArea img {
+  width: 250px;
+  height: 250px;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  opacity: .4;
+  filter: alpha(opacity=40); }
+
+#SelectorBox {
+  border: solid #fff;
+  border-width: 20px 20px 0 20px;
+  width: 290px;
+  height: 270px;
+  margin-top: -320px;
+  margin-left: -20px;
+  margin-Right: auto;
+  position: relative;
+  pointer-events: none;
+  box-shadow: 10px 10px 15px #333; }
+
+.imgAttribution {
   position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  outline: none;
-  background: white;
-  cursor: inherit;
+  bottom: 2px;
+  left: 2px;
+  background: #f89821;
+  background: rgba(248, 152, 33, 0.4);
+  padding: 1px 4px;
+  color: #f8f7bb;
+  color: #fff;
+  pointer-events: all !important;
+  margin: 0;
+  font: 14px Segoe UI Light,CustomSegoeUILight,Arial; }
+
+.ImageSelector #SelectorTag {
+  background-color: #fff;
+  border: solid #fff;
+  border-width: 0 20px 0 20px;
+  width: 290px;
+  height: 62px;
+  margin-left: -20px;
+  margin-right: auto;
+  position: relative;
+  box-shadow: 10px 10px 15px #333;
+  text-align: center;
+  padding-top: 10px;
+  box-sizing: border-box; }
+
+#uploadLabel {
+  margin-top: 160px; }
+
+.action {
+  font-family: Segoe UI Semibold,CustomSegoeSemibold,Arial;
+  font-size: 19px;
+  color: #f8f7bb;
+  color: #fff;
+  border: 1px solid #fff; }
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto; }
+
+.btn-default, .btn-default:hover {
+  background-color: #dd5900;
+  border-radius: 0; }
+
+input[type=file] {
   display: block; }
+
+#analyzingLabel {
+  margin-top: -20px;
+  font-size: 13px; }
+
+.bodyfont {
+  font-family: Segoe UI,CustomSegoeUI,Arial;
+  color: #f8f7bb;
+  color: #fff;
+  font-style: normal;
+  font-size: 21px; }
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #FF8C00;
+  color: white; }
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px; }
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #FF8C00;
+  color: white; }
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s; }
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0; }
+  to {
+    top: 0;
+    opacity: 1; } }
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0; }
+  to {
+    top: 0;
+    opacity: 1; } }

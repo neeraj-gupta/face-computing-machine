@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/upload', function (req, res){
+    console.log('In Server Call');
   var imageName = uuid.v1() + ".jpeg";
   var imageBase64 = req.body.image;
 
@@ -21,7 +22,7 @@ router.post('/upload', function (req, res){
     console.log(err);
     var imagePath = __dirname + "/" + imageName;
     console.log("Image path: " + imagePath);
-    callToPython(imagePath);
+    //callToPython(imagePath);
   });
 
   function callToPython(imagePath){
