@@ -8,6 +8,43 @@
         <meta content='width=device-width, initial-scale=1.0' name='viewport' />
         <link rel="stylesheet" href="/scripts/css/bootstrap.min.css">
         <link rel="stylesheet" href="stylesheets/main.css">
+        <script>
+            var index = 0;
+            var offset = 250;
+            var threshHold = 500;
+            var margin;
+            var elem = document.getElementById('imageList');
+
+
+            document.onkeydown = function(e) {
+                switch (e.keyCode) {
+                    case 37:
+                        if(index > 0){
+                            var marginL = parseFloat($('.ScrollArea').css('margin-left'));
+                            $('.ScrollArea #main00' + index).removeClass('selected');
+                            index--;
+                            $('.ScrollArea #main00' + index).addClass('selected');
+                            margin = marginL + offset;
+                            $('.ScrollArea').css('margin-left', margin+'px');
+                        }
+                        break;
+                    case 38:
+                        break;
+                    case 39:
+                            if(index < 14){
+                                var marginL = parseFloat($('.ScrollArea').css('margin-left'));
+                                $('#main00' + index).removeClass('selected');
+                                index++;
+                                $('.ScrollArea #main00' + index).addClass('selected');
+                                margin = marginL - offset;
+                                $('.ScrollArea').css('margin-left', margin+'px');
+                            }
+                        break;
+                    case 40:
+                        break;
+                }
+            };
+        </script>
     </head>
     <body>
         <div class="site-body">
@@ -29,38 +66,41 @@
                 <div id="selectImage">
                     <div id="imageDiv" class="ImageSelector" style="opacity: 1; ">
                         <div id="imageList" class="ScrollArea notSelectedImage">
-                            <img src="../images/scroll000.jpg" data-url="../images/main000.jpg" data-image-name="faces2/main000.jpg" id="faces2/main000.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll001.jpg" data-url="../images/main001.jpg" data-image-name="faces2/main001.jpg" id="faces2/main001.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll002.jpg" data-url="../images/main002.jpg" data-image-name="faces2/main002.jpg" id="faces2/main002.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll003.jpg" data-url="../images/main003.jpg" data-image-name="faces2/main003.jpg" id="faces2/main003.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll004.jpg" data-url="../images/main004.jpg" data-image-name="faces2/main004.jpg" id="faces2/main004.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll005.jpg" data-url="../images/main005.jpg" data-image-name="faces2/main005.jpg" id="faces2/main005.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll007.jpg" data-url="../images/main007.jpg" data-image-name="faces2/main007.jpg" id="faces2/main007.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll008.jpg" data-url="../images/main008.jpg" data-image-name="faces2/main008.jpg" id="faces2/main008.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll009.jpg" data-url="../images/main009.jpg" data-image-name="faces2/main009.jpg" id="faces2/main009.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll0010.jpg" data-url="../images/main0010.jpg" data-image-name="faces2/main0010.jpg" id="faces2/main0010.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll0011.jpg" data-url="../images/main0011.jpg" data-image-name="faces2/main0011.jpg" id="faces2/main0011.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll0012.jpg" data-url="../images/main0012.jpg" data-image-name="faces2/main0012.jpg" id="faces2/main0012.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll0013.jpg" data-url="../images/main0013.jpg" data-image-name="faces2/main0013.jpg" id="faces2/main0013.jpg" data-orig-url ="" data-orig-domain="" />
-                            <img src="../images/scroll0014.jpg" data-url="../images/main0014.jpg" data-image-name="faces2/main0014.jpg" id="faces2/main0014.jpg" data-orig-url ="" data-orig-domain="" />
+                            "<img class="selected" src="../images/scroll000.jpg" data-url="../images/main000.jpg" data-image-name="/main000.jpg" id="main000" data-orig-url ="" data-orig-domain="" />"
+                            <img src="../images/scroll001.jpg" data-url="../images/main001.jpg" data-image-name="/main001.jpg" id="main001" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll002.jpg" data-url="../images/main002.jpg" data-image-name="/main002.jpg" id="main002" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll003.jpg" data-url="../images/main003.jpg" data-image-name="/main003.jpg" id="main003" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll004.jpg" data-url="../images/main004.jpg" data-image-name="/main004.jpg" id="main004" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll005.jpg" data-url="../images/main005.jpg" data-image-name="/main005.jpg" id="main005" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll006.jpg" data-url="../images/main006.jpg" data-image-name="/main006.jpg" id="main006" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll007.jpg" data-url="../images/main007.jpg" data-image-name="/main007.jpg" id="main007" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll008.jpg" data-url="../images/main008.jpg" data-image-name="/main008.jpg" id="main008" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll009.jpg" data-url="../images/main009.jpg" data-image-name="/main009.jpg" id="main009" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0010.jpg" data-url="../images/main0010.jpg" data-image-name="/main0010.jpg" id="main0010" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0011.jpg" data-url="../images/main0011.jpg" data-image-name="/main0011.jpg" id="main0011" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0012.jpg" data-url="../images/main0012.jpg" data-image-name="/main0012.jpg" id="main0012" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0013.jpg" data-url="../images/main0013.jpg" data-image-name="/main0013.jpg" id="main0013" data-orig-url ="" data-orig-domain="" />
+                            <img src="../images/scroll0014.jpg" data-url="../images/main0014.jpg" data-image-name="/main0014.jpg" id="main0014" data-orig-url ="" data-orig-domain="" />
                         </div>
 
                         <div id="SelectorBox">
                             <a id="attributionId" class="imgAttribution" href="#" target="_blank"></a>
                         </div>
                         <div id="SelectorTag">
-                            <button type="button" class="btn btn-default" onclick="analyzeUrl() ">
+                            <button type="button" class="btn btn-default" onclick="fcm.usePhoto() ">
                                 <span class="glyphicon glyphicon-circle-arrow-right" style="margin-right: 4px" aria-hidden="true"></span>Use this photo
                             </button>
                         </div>
                     </div>
 
                     <label id="uploadLabel" class="center-block">
-                        <button id="uploadFileId" class="btn btn-default action" onclick=" useImage()">
+                        <button id="uploadFileId" class="btn btn-default action" onclick=" document.getElementById('uploadBtn').click()">
                             <span class="glyphicon glyphicon-folder-open"  style="margin-right: 4px"></span>
                             Use your own photo
                         </button>
-                        <input id="uploadBtn" type="file" accept="image/*" style="visibility: hidden; width: 0px; height: 0px">
+                        <form>
+                        <input id="uploadBtn" type="file" accept="image/*" style="visibility: hidden; width: 0px; height: 0px" onchange="fcm.selPhoto(this)">
+                        </form>
                     </label>
 
                     <label id="cameraLabel" class="center-block">
@@ -85,7 +125,7 @@
                             </div>
                             <div class="row">
                                 <div class="center-block">
-                                    <button id="take" class="btn btn-primary btn-lg center-block">Take a photo</button>
+                                    <button id="take" class="btn btn-primary btn-lg center-block" onclick="fcm.sendPhoto()">Take a photo</button>
                                 </div>
                             </div>
                             <canvas id="canvas" style="display:none; box-shadow: 0 0 10px #223344;"></canvas>
@@ -106,7 +146,7 @@
                         </div>
                     </div>
                     <p id="improvingLabel" class="help-block center-block bodyfont" style="font-weight: 100; font-size: 13px; text-align: center; visibility: hidden; margin-bottom: 20px; ">Sorry if we didn’t quite get it right -
-                        <a class="bodyfont link-underline" href="/goto?url=aka.ms/faceapi" target="_blank" style="font-weight: 100; font-size: 13px; text-decoration: underline">we are still improving this feature.</a>.</p>
+                        <a>we are still improving this feature.</a>.</p>
 
                     <div id="gameLauncher" hidden>
                         <button id="gameBtn" class="btn btn-default center-block action">
@@ -115,7 +155,7 @@
                         <div id="gameConjunction" class="bodyfont">or</div>
                     </div>
 
-                    <button id="tryAnotherBtn" class="btn btn-default center-block action" onclick=" history.go(-1); ">
+                    <button id="tryAnotherBtn" class="btn btn-default center-block action" onclick="fcm.tryAnother() ">
                         Try Another Photo!
                     </button>
                     <div id="jsonEventDiv" style="margin-top: 30px;" hidden>

@@ -134,6 +134,9 @@ li:hover {
   opacity: .4;
   filter: alpha(opacity=40);
 }
+.selected {
+  opacity: 1 !important;
+}
 #SelectorBox {
   border: solid #fff;
   border-width: 20px 20px 0 20px;

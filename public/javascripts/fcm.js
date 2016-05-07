@@ -1,14 +1,31 @@
 /**
  * Created by Neeraj on 4/21/2016.
  */
+var videoPlaying = false;
+var webCamStream;
+var video = document.getElementById('v');
 
 function Fcm() {
 
 };
 
+Fcm.prototype.sendPhoto = function() {
+    if (videoPlaying){
+        var canvas = document.getElementById('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        var data = canvas.toDataURL('image/webp');
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
+        webCamStream.stop();
+        this.upload(data);
+    }
+};
+
 Fcm.prototype.initializeCamera = function() {
-    var webCamStream;
-    var videoPlaying = false;
+    //var webCamStream;
+    videoPlaying = false;
     // Now we can use it
     if( this.isUserMedia() ){
         var constraints = {
@@ -16,7 +33,6 @@ Fcm.prototype.initializeCamera = function() {
             audio:false
         };
         var self = this;
-        var video = document.getElementById('v');
         var media = navigator.getUserMedia(constraints, function(stream){
             // URL Object is different in WebKit
             var url = window.URL || window.webkitURL;
@@ -30,19 +46,7 @@ Fcm.prototype.initializeCamera = function() {
             console.log("ERROR");
             console.log(error);
         });
-        // Listen for user click on the "take a photo" button
-        document.getElementById('take').addEventListener('click', function(){
-            if (videoPlaying){
-                var canvas = document.getElementById('canvas');
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0);
-                var data = canvas.toDataURL('image/webp');
-                //document.getElementById('photo').setAttribute('src', data);
-                webCamStream.stop();
-                self.upload(data);
-            }
-        },false);
+
         document.getElementsByClassName("close")[0].addEventListener('click', function(){
             var modal = document.getElementById('myModal');
             modal.style.display = "none";
@@ -61,10 +65,48 @@ Fcm.prototype.isUserMedia = function(){
         navigator.msGetUserMedia || null;
 };
 
-Fcm.prototype.closeCamera = function(){ alert('hi')
-    this.webCamStream.stop();
-    this.videoPlaying = false;
-}
+Fcm.prototype.usePhoto = function(){
+    var id = $('.ScrollArea .selected').attr('id');
+    var img = document.getElementById(id);
+
+    // Create an empty canvas element
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Copy the image contents to the canvas
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+    this.upload(dataURL);
+};
+
+Fcm.prototype.selPhoto = function(input){
+    var self = this;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", e.target.result);
+
+            // Create an empty canvas element
+            var canvas = document.createElement("canvas");
+            canvas.width = elem.width;
+            canvas.height = elem.height;
+
+            // Copy the image contents to the canvas
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(elem, 0, 0);
+
+            var dataURL = canvas.toDataURL("image/png");
+            self.upload(dataURL);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
 
 Fcm.prototype.openModal = function(){
     var modal = document.getElementById('myModal');
@@ -75,21 +117,27 @@ Fcm.prototype.openModal = function(){
 Fcm.prototype.upload = function(data){
     //var canvas = document.getElementById('canvas');
     //var image = canvas.toDataURL("image/png");
-    alert('data: ' + data);
     var imageBase64 = data.replace(/^data:image\/(png|jpg);base64,/, "");
-
+    $('#results').show();
+    $('#selectImage').hide();
     $.ajax({
         url: 'http://localhost:3000/upload',
         //url: 'http://52.10.196.93:3000/upload',
-        dataType: "json",
+
         data: {
             image: imageBase64
         },
         type: "POST",
         success: function(data) {
-            console.log("D: " + data);
+            alert("D: " + data);
+            $('#thumbnail').attr('src',data);
         }
     });
 };
+
+Fcm.prototype.tryAnother = function(){
+    $('#results').hide();
+    $('#selectImage').show();
+}
 
 var fcm = new Fcm();
