@@ -40,10 +40,10 @@ li:hover {
   padding-bottom: 30px; }
 
 #headerimage {
-  height: 87px;
-  width: 80px;
+  height: 150px;
+  width: 150px;
   float: left;
-  background: url(../images/logo.jpg);
+  background: url(../images/logo.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -57,9 +57,9 @@ li:hover {
   padding-bottom: 0;
   font-weight: 100;
   margin-bottom: 0;
-  margin-top: 0;
+  margin-top: 20px;
   font-family: Segoe UI Light,CustomSegoeUILight,Arial;
-  font-size: 58px;
+  font-size: 50px;
   color: #f8f7bb;
   margin-left: 0;
   color: #fff; }
@@ -71,7 +71,7 @@ li:hover {
   color: #fff; }
 
 #imageDiv {
-  margin-top: 50px;
+  margin-top: 30px;
   -ms-touch-action: none; }
 
 .ImageSelector {
