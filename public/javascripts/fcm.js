@@ -121,7 +121,7 @@ Fcm.prototype.upload = function(data){
     $('#results').show();
     $('#selectImage').hide();
     $.ajax({
-        url: 'http://localhost:3000/upload',
+        url: 'http://52.10.196.93:3000/upload',
         //url: 'http://52.10.196.93:3000/upload',
         dataType: 'json',
         data: {
