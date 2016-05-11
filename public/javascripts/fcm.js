@@ -78,7 +78,7 @@ Fcm.prototype.usePhoto = function(){
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
-    var dataURL = canvas.toDataURL("image/png");
+    var dataURL = canvas.toDataURL();
     this.upload(dataURL);
 };
 
@@ -100,7 +100,7 @@ Fcm.prototype.selPhoto = function(input){
             var ctx = canvas.getContext("2d");
             ctx.drawImage(elem, 0, 0);
 
-            var dataURL = canvas.toDataURL("image/png");
+            var dataURL = canvas.toDataURL();
             self.upload(dataURL);
         };
         reader.readAsDataURL(input.files[0]);
@@ -118,6 +118,7 @@ Fcm.prototype.upload = function(data){
     //var canvas = document.getElementById('canvas');
     //var image = canvas.toDataURL("image/png");
     var imageBase64 = data.replace(/^data:image\/(png|jpg);base64,/, "");
+    $('#thumbnail').css('src',data);
     $('#results').show();
     $('#selectImage').hide();
     $.ajax({
@@ -129,8 +130,7 @@ Fcm.prototype.upload = function(data){
         },
         type: "POST",
         success: function(data) {
-            alert("D: " + data);
-            $('#thumbnail').attr('src',data);
+            //$('#thumbnail').attr('src',data);
         }
     });
 };

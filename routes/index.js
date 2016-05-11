@@ -17,11 +17,10 @@ router.post('/upload', function (req, res){
   var imageName = uuid.v1() + ".jpg";
   var imageBase64 = req.body.image;
 
-  fs.writeFile(__dirname + "\\" + imageName, imageBase64, 'base64', function(err) {
+  fs.writeFile(__dirname + "/../images/" + imageName, imageBase64, 'base64', function(err) {
     console.log(err);
-    var imagePath = __dirname + "\\" + imageName;
-    console.log("Image path: " + imagePath);
-      res.send(imagePath);
+    var imagePath = __dirname + "/" + imageName;
+      res.send(imageName);
     //callToPython(imagePath);
   });
 
