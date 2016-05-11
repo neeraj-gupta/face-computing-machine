@@ -118,7 +118,6 @@ Fcm.prototype.upload = function(data){
     //var canvas = document.getElementById('canvas');
     //var image = canvas.toDataURL("image/png");
     var imageBase64 = data.replace(/^data:image\/(png|jpg);base64,/, "");
-    $('#thumbnail').css('src',data);
     $('#results').show();
     $('#selectImage').hide();
     $.ajax({
@@ -130,7 +129,9 @@ Fcm.prototype.upload = function(data){
         },
         type: "POST",
         success: function(data) {
-            //$('#thumbnail').attr('src',data);
+            console.log("Response data: " + data.outputBase64);
+            var srcData = 'data:image/jpg;base64,' + data.outputBase64;
+            $('#thumbnail').attr('src',srcData);
         }
     });
 };

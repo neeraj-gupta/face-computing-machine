@@ -31,10 +31,10 @@ router.post('/upload', function (req, res){
       headers: { "Content-Type": "application/json" }
     };
     
-    client.post("http://52.10.196.93:5000/getData", args, function(data, response){
-	var jsonString = JSON.stringify(data);
-	console.log(jsonString);
-	var jsonObject = data;
+    client.post("http://127.0.0.1:5000/getData", args, function(data, response){
+    	var jsonString = JSON.stringify(data);
+    	console.log(jsonString);
+    	var jsonObject = data;
 	    res.send(jsonObject);
     });
    }
