@@ -15,7 +15,6 @@
             var margin;
             var elem = document.getElementById('imageList');
 
-
             document.onkeydown = function(e) {
                 switch (e.keyCode) {
                     case 37:
@@ -66,7 +65,7 @@
                 <div id="selectImage">
                     <div id="imageDiv" class="ImageSelector" style="opacity: 1; ">
                         <div id="imageList" class="ScrollArea notSelectedImage">
-                            "<img class="selected" src="../images/scroll000.jpg" data-url="../images/main000.jpg" data-image-name="/main000.jpg" id="main000" data-orig-url ="" data-orig-domain="" />"
+                            <img class="selected" src="../images/scroll000.jpg" data-url="../images/main000.jpg" data-image-name="/main000.jpg" id="main000" data-orig-url ="" data-orig-domain="" />
                             <img src="../images/scroll001.jpg" data-url="../images/main001.jpg" data-image-name="/main001.jpg" id="main001" data-orig-url ="" data-orig-domain="" />
                             <img src="../images/scroll002.jpg" data-url="../images/main002.jpg" data-image-name="/main002.jpg" id="main002" data-orig-url ="" data-orig-domain="" />
                             <img src="../images/scroll003.jpg" data-url="../images/main003.jpg" data-image-name="/main003.jpg" id="main003" data-orig-url ="" data-orig-domain="" />
@@ -139,27 +138,26 @@
                     <div id="analyzingLabel" class="center-block"><img src="../images/loading.gif" /></div>
                     <div id="imageSpacer" style="width:0px; height:0px;"></div>
                     <div id="thumbContainer" style="display:none; padding-left: 0px; position: relative;">
-                        <img id="thumbnail" src="" class="img-responsive center-block" />
-                        <a id="attributionMainId" class="imgAttribution" href="#" target="_blank"></a>
-                        <div id="faces">
-                            <div></div>
-                        </div>
+                        <a type="button" data-html="true" onclick="return false;">
+                            <img data-html="true" data-toggle="tooltip" data-placement="right" data-container="body" id="thumbnail" src=""  class="img-responsive center-block" />
+                        </a>
                     </div>
                     <p id="improvingLabel" class="help-block center-block bodyfont" style="font-weight: 100; font-size: 13px; text-align: center; visibility: hidden; margin-bottom: 20px; ">Sorry if we didn’t quite get it right -
                         <a>we are still improving this feature.</a>.</p>
 
-                    <div id="gameLauncher" hidden>
-                        <button id="gameBtn" class="btn btn-default center-block action">
-                            Get a human opinion
-                        </button>
-                        <div id="gameConjunction" class="bodyfont">or</div>
-                    </div>
-
                     <button id="tryAnotherBtn" class="btn btn-default center-block action" onclick="fcm.tryAnother() ">
                         Try Another Photo!
                     </button>
-                    <div id="jsonEventDiv" style="margin-top: 30px;" hidden>
-                        <pre id="jsonEvent" style="text-align: left"></pre>
+                    <div id="popover-content" class="hide">
+                        <div id="demo2_tip">
+                            <h3>Image Details</h3>
+                            <ul>
+                                <li> Gender: <b><span id="gender"></span></b></li>
+                                <li> Mood : <b><span id="mood"></span></b></li>
+                                <li> Age : <b><span id="age"></span></b></li>
+                                <li> Labels : <b><span id="labels"></span></b></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -168,16 +166,6 @@
                     <label class="bodyfont" style="font-size: 12px" href="#"> | </label>
                     <a class="bodyfont link" style="font-size: 12px;" href="/goto?url=aka.ms/howoldtou" target="_blank"><span>Terms of Use</span></a>
                 </div>
-
-                <input data-val="true" data-val-required="The IsTest field is required." id="isTest" name="isTest" type="hidden" value="False" />
-                <input id="source" name="source" type="hidden" value="" />
-                <input id="siteVersion" name="siteVersion" type="hidden" value="001" />
-
-
-                <input id="analyzingText" name="analyzingText" type="hidden" value="Analyzing..." />
-                <input id="couldntDetectText" name="couldntDetectText" type="hidden" value="Couldn’t detect any faces." />
-                <input id="VerifyImageText" name="VerifyImageText" type="hidden" value="Please verify that the image is valid and less than 10MB." />
-
             </div>
         </div>
 

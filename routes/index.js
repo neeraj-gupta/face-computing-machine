@@ -20,7 +20,6 @@ router.post('/upload', function (req, res){
 
   fs.writeFile(imagePath + imageName, imageBase64, 'base64', function(err) {
         console.log(err);
-        //res.send(imageName);
         callToPython(imagePath + imageName);
   });
 

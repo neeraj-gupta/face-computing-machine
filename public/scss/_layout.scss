@@ -201,6 +201,9 @@ input[type=file] {
 }
 
 // Result Panel
+#results{
+  padding-top: 50px;
+}
 #analyzingLabel {
   height: auto;
   width: auto;
@@ -220,9 +223,21 @@ input[type=file] {
   font-size: 21px;
 }
 
-#thumbnail{
-  height: 50px;
-  width: 50px;
+#result-data{
+  position: absolute;
+  left: 50px;
+  top: 50px;
 }
 
+#thumbnail{
+  height: 350px;
+  width: 350px;
+}
+
+.popover {max-width:400px;}
+#demo2_tip ul li{
+  width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
+}
 

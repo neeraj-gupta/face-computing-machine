@@ -190,6 +190,9 @@ li:hover {
 input[type=file] {
   display: block; }
 
+#results {
+  padding-top: 50px; }
+
 #analyzingLabel {
   height: auto;
   width: auto;
@@ -208,9 +211,22 @@ input[type=file] {
   font-style: normal;
   font-size: 21px; }
 
+#result-data {
+  position: absolute;
+  left: 50px;
+  top: 50px; }
+
 #thumbnail {
-  height: 50px;
-  width: 50px; }
+  height: 350px;
+  width: 350px; }
+
+.popover {
+  max-width: 400px; }
+
+#demo2_tip ul li {
+  width: 100%;
+  overflow: hidden;
+  word-wrap: break-word; }
 
 /* The Modal (background) */
 .modal {

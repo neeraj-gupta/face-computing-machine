@@ -19,6 +19,7 @@ Fcm.prototype.sendPhoto = function() {
         var modal = document.getElementById('myModal');
         modal.style.display = "none";
         webCamStream.stop();
+        $('#thumbnail').css({'height':'auto', 'width' : 'auto'});
         this.upload(data);
     }
 };
@@ -134,7 +135,19 @@ Fcm.prototype.upload = function(data){
         success: function(data) {
             $('#analyzingLabel').hide();
             $('#thumbContainer').show();
+            $("[data-toggle=tooltip]").popover({
+                trigger: "hover",
+                html: true,
+                content: function() {
+                    return $('#popover-content').html();
+                }
+            });
             var srcData = 'data:image/jpg;base64,' + data.outputBase64;
+            var labels = data.labelFromImage.substring(1,data.labelFromImage.length+1);
+            $('#gender').text(data.gender);
+            $('#mood').text(data.mood);
+            $('#age').text(data.age);
+            $('#labels').text(labels);
             $('#thumbnail').attr('src',srcData);
         }
     });
@@ -143,6 +156,8 @@ Fcm.prototype.upload = function(data){
 Fcm.prototype.tryAnother = function(){
     $('#results').hide();
     $('#selectImage').show();
+    $('#thumbContainer').hide();
+    $('#thumbnail').attr('src','');
 }
 
 var fcm = new Fcm();
