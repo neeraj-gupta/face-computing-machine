@@ -191,8 +191,15 @@ input[type=file] {
   display: block; }
 
 #analyzingLabel {
-  margin-top: -20px;
+  height: auto;
+  width: auto;
+  display: none;
+  margin-top: 20px;
   font-size: 13px; }
+
+#analyzingLabel img {
+  height: 100px;
+  width: 100px; }
 
 .bodyfont {
   font-family: Segoe UI,CustomSegoeUI,Arial;
@@ -200,6 +207,10 @@ input[type=file] {
   color: #fff;
   font-style: normal;
   font-size: 21px; }
+
+#thumbnail {
+  height: 50px;
+  width: 50px; }
 
 /* The Modal (background) */
 .modal {

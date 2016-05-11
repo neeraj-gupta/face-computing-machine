@@ -202,10 +202,16 @@ input[type=file] {
 
 // Result Panel
 #analyzingLabel {
-  margin-top: -20px;
+  height: auto;
+  width: auto;
+  display: none;
+  margin-top: 20px;
   font-size: 13px;
 }
-
+#analyzingLabel img {
+  height: 100px;
+  width: 100px;
+}
 .bodyfont {
   font-family: Segoe UI,CustomSegoeUI,Arial;
   color: #f8f7bb;

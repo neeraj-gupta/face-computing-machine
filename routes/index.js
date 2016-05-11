@@ -19,9 +19,9 @@ router.post('/upload', function (req, res){
   var imagePath = __dirname + "/../images/";
 
   fs.writeFile(imagePath + imageName, imageBase64, 'base64', function(err) {
-      console.log(err);
-      //res.send(imageName);
-      callToPython(imagePath + imageName);
+        console.log(err);
+        //res.send(imageName);
+        callToPython(imagePath + imageName);
   });
 
   function callToPython(imagePath){
