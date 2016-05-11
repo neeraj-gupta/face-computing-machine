@@ -16,12 +16,12 @@ router.get('/', function(req, res, next) {
 router.post('/upload', function (req, res){
   var imageName = uuid.v1() + ".jpg";
   var imageBase64 = req.body.image;
+  var imagePath = __dirname + "/../images/";
 
-  fs.writeFile(__dirname + "/../images/" + imageName, imageBase64, 'base64', function(err) {
-    console.log(err);
-    var imagePath = __dirname + "/" + imageName;
-      res.send(imageName);
-    //callToPython(imagePath);
+  fs.writeFile(imagePath + imageName, imageBase64, 'base64', function(err) {
+      console.log(err);
+      //res.send(imageName);
+      callToPython(imagePath + imageName);
   });
 
   function callToPython(imagePath){
@@ -35,7 +35,7 @@ router.post('/upload', function (req, res){
 	var jsonString = JSON.stringify(data);
 	console.log(jsonString);
 	var jsonObject = data;
-	//console.log(jsonObject);
+	    res.send(jsonObject);
     });
    }
 });
